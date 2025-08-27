@@ -8,65 +8,65 @@
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 </head>
 <body>
-  <header class="top-box">
+  <!-- NAME BOX -->
+  <div class="box name-box">
     <h1>Michele Newman</h1>
-    <p class="tagline">Ph.D. candidate at University of Washington Information School</p>
-  </header>
+    <p class="subtitle">Ph.D. Candidate, UW Information School</p>
+    <p class="tagline">Exploring how digital worlds preserve and create cultural knowledge</p>
+  </div>
 
-  <main>
-    <section class="bio-box">
-      <img src="assets/bio.jpg" alt="Michele Newman">
-      <p>I'm Michele Newman, a Ph.D. candidate at the University of Washington's Information School, advised by Dr. Jin Ha Lee and Dr. Jason Yip. My research explores how communities create and preserve cultural knowledge through interactive media, including video games and creativity support tools, framing these environments as lasting infrastructures for cultural heritage and community identity.</p>
-    </section>
+  <!-- BIO BOX -->
+  <div class="box bio-box">
+    <img src="assets/bio.jpg" alt="Michele Newman">
+    <p>I'm Michele Newman, a Ph.D. candidate at the University of Washington's Information School, advised by Dr. Jin Ha Lee and Dr. Jason Yip. My research explores how communities create and preserve cultural knowledge through interactive media, including video games and creativity support tools, framing these environments as lasting infrastructures for cultural heritage and community identity.</p>
+  </div>
 
-    <section class="research-box">
-      <h2>Research</h2>
-      <p>I’m curious about how digital worlds—like video games, interactive tools, and multimedia platforms—become spaces where communities create, share, and preserve knowledge. I explore how we can design environments that spark creativity, support learning, and protect cultural heritage. Along the way, I’m especially interested in:</p>
-      <ul>
-        <li>Finding ways to preserve digital stories, games, and cultural content before they disappear</li>
-        <li>Co-creating tools and experiences that invite collaboration, creativity, and discovery</li>
-        <li>Exploring how AI and new technologies change the way we imagine, create, and engage with information</li>
-      </ul>
-    </section>
+  <!-- RESEARCH BOX -->
+  <div class="box research-box">
+    <h2>📂 Research</h2>
+    <p>I’m curious about how digital worlds—like video games, interactive tools, and multimedia platforms—become spaces where communities create, share, and preserve knowledge. I explore how we can design environments that spark creativity, support learning, and protect cultural heritage. Along the way, I’m especially interested in:</p>
+    <p>Finding ways to preserve digital stories, games, and cultural content before they disappear</p>
+    <p>Co-creating tools and experiences that invite collaboration, creativity, and discovery</p>
+    <p>Exploring how AI and new technologies change the way we imagine, create, and engage with information</p>
+  </div>
 
-    <section class="my-work-box">
-      <h2>My Work</h2>
-      <button onclick="openPopup('publications-popup')">Publications</button>
-      <button onclick="openPopup('projects-popup')">Projects</button>
-      <button onclick="openPopup('teaching-popup')">Teaching</button>
-    </section>
+  <!-- MY WORK BOX -->
+  <div class="box work-box">
+    <h2>💾 My Work</h2>
+    <button onclick="openPopup('publications-popup')">Publications</button>
+    <button onclick="openPopup('projects-popup')">Projects</button>
+    <button onclick="openPopup('teaching-popup')">Teaching</button>
+  </div>
 
-    <section class="cv-box">
-      <h2>CV</h2>
-      <a href="assets/cv.pdf" target="_blank" class="cv-btn">Download CV</a>
-      <p>
-        <a href="https://scholar.google.com" target="_blank">Google Scholar</a> |
-        <a href="https://orcid.org" target="_blank">ORCID</a>
-      </p>
-    </section>
+  <!-- CV BOX -->
+  <div class="box cv-box">
+    <h2>CV & Links</h2>
+    <div class="cv-buttons">
+      <a href="assets/cv.pdf" class="button" target="_blank">Download CV</a>
+      <a href="https://scholar.google.com/" class="button" target="_blank">Google Scholar</a>
+      <a href="https://orcid.org/" class="button" target="_blank">ORCID</a>
+    </div>
+  </div>
 
-    <button id="close-all-btn" class="close-all-btn">Close All Windows</button>
-  </main>
-
-  <footer id="footer-easter-egg">
-    <p>© 2025 Michele Newman</p>
-  </footer>
-
-  <!-- My Work Popups -->
+  <!-- POPUPS -->
   <div id="publications-popup" class="popup">
-    <div class="popup-header">Publications <button class="popup-close">X</button></div>
+    <div class="popup-header">Publications <button class="popup-close" onclick="closePopup('publications-popup')">X</button></div>
     <div class="popup-content" id="publications-list"></div>
   </div>
-
   <div id="projects-popup" class="popup">
-    <div class="popup-header">Projects <button class="popup-close">X</button></div>
+    <div class="popup-header">Projects <button class="popup-close" onclick="closePopup('projects-popup')">X</button></div>
     <div class="popup-content" id="projects-list"></div>
   </div>
-
   <div id="teaching-popup" class="popup">
-    <div class="popup-header">Teaching <button class="popup-close">X</button></div>
+    <div class="popup-header">Teaching <button class="popup-close" onclick="closePopup('teaching-popup')">X</button></div>
     <div class="popup-content" id="teaching-list"></div>
   </div>
+
+  <button id="close-all-btn">Close All Windows</button>
+
+  <footer>
+    <p id="footer-easter-egg">© 2025 Michele Newman</p>
+  </footer>
 
   <script src="assets/index.js"></script>
 </body>
