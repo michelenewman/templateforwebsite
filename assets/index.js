@@ -1,4 +1,6 @@
-// ---------- LOAD YAML DATA FOR WORK POPUPS ----------
+let topZ = 1000;
+
+// ---------- LOAD YAML DATA ----------
 fetch('assets/data.yml')
   .then(res => res.text())
   .then(text => {
@@ -42,49 +44,84 @@ fetch('assets/data.yml')
 function openPopup(id) {
   const popup = document.getElementById(id);
   popup.style.display = 'block';
+
   const vw = window.innerWidth;
   const vh = window.innerHeight;
   const pw = popup.offsetWidth;
   const ph = popup.offsetHeight;
-  const offsetX = (Math.random() * 80) - 40;
-  const offsetY = (Math.random() * 80) - 40;
+
+  const offsetX = (Math.random() * 60) - 30;
+  const offsetY = (Math.random() * 60) - 30;
+
   popup.style.left = `${(vw - pw)/2 + offsetX}px`;
   popup.style.top = `${(vh - ph)/2 + offsetY}px`;
-  popup.style.zIndex = 1000;
+  topZ++;
+  popup.style.zIndex = topZ;
 }
 
 function closePopup(id) {
-  const popup = document.getElementById(id);
-  popup.style.display = 'none';
+  document.getElementById(id).style.display = 'none';
 }
 
 document.getElementById('close-all-btn').addEventListener('click', () => {
-  const popups = document.querySelectorAll('.popup');
-  popups.forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.popup').forEach(p => p.style.display = 'none');
 });
 
-// ---------- DRAGGABLE POPUPS ----------
+// ---------- DRAGGABLE & RESIZABLE POPUPS ----------
 document.querySelectorAll('.popup').forEach(popup => {
   const header = popup.querySelector('.popup-header');
-  let offsetX = 0, offsetY = 0, isDown = false;
 
+  // Drag
+  let isDragging = false, offsetX = 0, offsetY = 0;
   header.addEventListener('mousedown', e => {
-    isDown = true;
+    isDragging = true;
     offsetX = e.clientX - popup.offsetLeft;
     offsetY = e.clientY - popup.offsetTop;
-    popup.style.zIndex = 1000;
+    topZ++;
+    popup.style.zIndex = topZ;
   });
 
   document.addEventListener('mousemove', e => {
-    if (!isDown) return;
+    if (!isDragging) return;
     popup.style.left = (e.clientX - offsetX) + 'px';
     popup.style.top = (e.clientY - offsetY) + 'px';
   });
 
-  document.addEventListener('mouseup', () => { isDown = false; });
+  document.addEventListener('mouseup', () => isDragging = false);
+
+  // Resize
+  const resizer = document.createElement('div');
+  resizer.style.width = '12px';
+  resizer.style.height = '12px';
+  resizer.style.background = '#c4a7e7';
+  resizer.style.position = 'absolute';
+  resizer.style.right = '0';
+  resizer.style.bottom = '0';
+  resizer.style.cursor = 'se-resize';
+  popup.appendChild(resizer);
+
+  let isResizing = false, startX = 0, startY = 0, startWidth = 0, startHeight = 0;
+  resizer.addEventListener('mousedown', e => {
+    isResizing = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    startWidth = popup.offsetWidth;
+    startHeight = popup.offsetHeight;
+    topZ++;
+    popup.style.zIndex = topZ;
+    e.stopPropagation();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!isResizing) return;
+    popup.style.width = (startWidth + e.clientX - startX) + 'px';
+    popup.style.height = (startHeight + e.clientY - startY) + 'px';
+  });
+
+  document.addEventListener('mouseup', () => isResizing = false);
 });
 
-// ---------- FUN FACT POPUPS ----------
+// ---------- FUN FACTS ----------
 const funFacts = [
   "You found a hidden fun fact! 🌟",
   "Keep exploring! Did you know? 💡",
@@ -98,64 +135,57 @@ function createFunFact() {
   popup.className = 'popup';
   const width = 220, height = 100;
   const vw = window.innerWidth, vh = window.innerHeight;
-  const offsetX = (Math.random()*60)-30, offsetY=(Math.random()*60)-30;
-  popup.style.width = width+'px';
-  popup.style.height = height+'px';
-  popup.style.left=`${(vw-width)/2 + offsetX}px`;
-  popup.style.top=`${(vh-height)/2 + offsetY}px`;
-  popup.style.position='absolute';
-  popup.style.display='block';
-  popup.style.zIndex=1000;
-  popup.style.background='#e3d7ff';
-  popup.style.border='2px solid #c4a7e7';
-  popup.style.borderRadius='12px';
-  popup.style.boxShadow='4px 4px 0 #c4a7e7';
-  popup.innerHTML=`
+  const offsetX = (Math.random() * 60) - 30, offsetY = (Math.random() * 60) - 30;
+
+  popup.style.width = width + 'px';
+  popup.style.height = height + 'px';
+  popup.style.left = `${(vw - width)/2 + offsetX}px`;
+  popup.style.top = `${(vh - height)/2 + offsetY}px`;
+  popup.style.position = 'absolute';
+  popup.style.display = 'block';
+  popup.style.zIndex = ++topZ;
+  popup.style.background = '#e3d7ff';
+  popup.style.border = '2px solid #c4a7e7';
+  popup.style.borderRadius = '12px';
+  popup.style.boxShadow = '4px 4px 0 #c4a7e7';
+
+  popup.innerHTML = `
     <div class="popup-header">Fun Fact <button class="popup-close">X</button></div>
     <div class="popup-content">${text}</div>
   `;
   document.body.appendChild(popup);
   popup.querySelector('.popup-close').onclick = () => popup.remove();
-
-  const header = popup.querySelector('.popup-header');
-  let isDown=false, dragX=0, dragY=0;
-  header.addEventListener('mousedown', e=>{isDown=true; dragX=e.clientX-popup.offsetLeft; dragY=e.clientY-popup.offsetTop; popup.style.zIndex=1000;});
-  document.addEventListener('mousemove', e=>{if(!isDown) return; popup.style.left=(e.clientX-dragX)+'px'; popup.style.top=(e.clientY-dragY)+'px';});
-  document.addEventListener('mouseup', ()=>{isDown=false;});
 }
-document.querySelector('.bio-box img')?.addEventListener('click', createFunFact);
+
+// Click bio image to create fun fact
+document.querySelector('.bio-box img').addEventListener('click', createFunFact);
 
 // ---------- ZELDA EASTER EGG ----------
-const footer = document.getElementById('footer-easter-egg');
-footer.addEventListener('click', () => {
+document.getElementById('footer-easter-egg').addEventListener('click', () => {
   const popup = document.createElement('div');
   popup.className = 'popup';
-  const width=300, height=120;
-  const vw=window.innerWidth, vh=window.innerHeight;
-  popup.style.width = width+'px';
-  popup.style.height = height+'px';
-  popup.style.left = ((vw-width)/2)+'px';
-  popup.style.top = ((vh-height)/2)+'px';
-  popup.style.position='absolute';
-  popup.style.display='block';
-  popup.style.background='#e3d7ff';
-  popup.style.border='2px solid #c4a7e7';
-  popup.style.borderRadius='12px';
-  popup.style.boxShadow='4px 4px 0 #c4a7e7';
-  popup.style.zIndex=1000;
-  popup.innerHTML=`
+  const width = 300, height = 120;
+  const vw = window.innerWidth, vh = window.innerHeight;
+
+  popup.style.width = width + 'px';
+  popup.style.height = height + 'px';
+  popup.style.left = ((vw - width)/2) + 'px';
+  popup.style.top = ((vh - height)/2) + 'px';
+  popup.style.position = 'absolute';
+  popup.style.display = 'block';
+  popup.style.background = '#e3d7ff';
+  popup.style.border = '2px solid #c4a7e7';
+  popup.style.borderRadius = '12px';
+  popup.style.boxShadow = '4px 4px 0 #c4a7e7';
+  popup.style.zIndex = ++topZ;
+
+  popup.innerHTML = `
     <div class="popup-header">🎮 Zelda Easter Egg <button class="popup-close">X</button></div>
     <div class="popup-content">
       <div class="marquee"><span>🔺 You found the Triforce! 🔺</span></div>
-      <p style="color:#6a5acd;margin-top:0.5rem;">It's dangerous to go alone… take this! 🗡️</p>
+      <p style="color:#6a5acd; margin-top:0.5rem;">It's dangerous to go alone… take this! 🗡️</p>
     </div>
   `;
   document.body.appendChild(popup);
-  popup.querySelector('.popup-close').onclick = ()=>popup.remove();
-
-  const header = popup.querySelector('.popup-header');
-  let isDown=false, dragX=0, dragY=0;
-  header.addEventListener('mousedown', e=>{isDown=true; dragX=e.clientX-popup.offsetLeft; dragY=e.clientY-popup.offsetTop; popup.style.zIndex=1000;});
-  document.addEventListener('mousemove', e=>{if(!isDown) return; popup.style.left=(e.clientX-dragX)+'px'; popup.style.top=(e.clientY-dragY)+'px';});
-  document.addEventListener('mouseup', ()=>{isDown=false;});
+  popup.querySelector('.popup-close').onclick = () => popup.remove();
 });
