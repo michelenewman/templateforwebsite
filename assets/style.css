@@ -1,167 +1,120 @@
 /* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Background */
+/* Body */
 body {
   font-family: "Verdana", sans-serif;
-  background: linear-gradient(135deg, #ffdede, #e9d9ff, #d9f5ec);
+  background: linear-gradient(135deg, #fffaf0, #f0f8ff); /* soft pastel gradient */
   min-height: 100vh;
   color: #333;
   padding: 2rem;
 }
 
-/* Header Box */
-.header-box {
+/* Boxes (Header, Bio, Research, My Work, CV) */
+.header-box, .bio-box, .research-box, .mywork-box, .cv-box {
   max-width: 800px;
-  margin: 0 auto 2rem auto;
+  margin: 1.5rem auto;
   padding: 1.5rem;
-  background: #fff;
-  border: 3px solid #c4a7e7;
-  border-radius: 20px;
+  background: #ffffff;
+  border: 2px solid #c4a7e7;
+  border-radius: 15px;
   box-shadow: 4px 4px 0px #c4a7e7;
 }
 
-.header-content {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.bio-img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid #c4a7e7;
-}
-
-.header-text h1 {
+/* Header Box */
+.header-box h1 {
   font-family: "Press Start 2P", monospace;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #c38d9e;
 }
-
-.header-text .title {
+.header-box .title {
   font-weight: bold;
-  color: #666;
+  color: #6a5acd;
+  margin: 0.5rem 0;
 }
-
-.header-text .tagline {
+.header-box .tagline {
   font-style: italic;
-  color: #444;
-  margin-top: 0.3rem;
+  color: #666;
+  margin-bottom: 0.5rem;
 }
-
-.header-links a {
-  display: inline-block;
-  margin-top: 0.5rem;
-  margin-right: 0.5rem;
+.header-box .header-links a {
   text-decoration: none;
-  padding: 0.3rem 0.6rem;
+  margin-right: 1rem;
+  color: #333;
   background: #d7eaff;
   border: 2px solid #a3bffa;
   border-radius: 12px;
-  color: #333;
+  padding: 0.3rem 0.8rem;
   transition: all 0.2s ease;
 }
-
-.header-links a:hover {
+.header-box .header-links a:hover {
   background: #a3bffa;
   color: #fff;
 }
 
-/* Research Box */
-.research-box {
-  max-width: 800px;
-  margin: 0 auto 2rem auto;
-  padding: 1.5rem;
-  background: #fffdf9;
-  border: 2px solid #ffb6b6;
-  border-radius: 15px;
-  box-shadow: 3px 3px 0px #ffb6b6;
+/* Bio Box */
+.bio-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.bio-content img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #c4a7e7;
+}
+.bio-text {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-.research-box h2 {
+/* Research Box */
+.research-box h2, .mywork-box h2, .cv-box h2 {
   font-family: "Silkscreen", monospace;
   color: #6a5acd;
   margin-bottom: 0.8rem;
 }
 
-/* My Work Box */
-.mywork-box {
-  max-width: 800px;
-  margin: 0 auto 2rem auto;
-  padding: 1.5rem;
-  background: #fff;
-  border: 2px solid #b6e3ff;
-  border-radius: 15px;
-  box-shadow: 3px 3px 0px #b6e3ff;
-  text-align: center;
-}
-
-.mywork-box h2 {
-  font-family: "Silkscreen", monospace;
-  color: #6a5acd;
-  margin-bottom: 1rem;
-}
-
-.mywork-box button {
-  margin: 0.3rem;
+/* My Work Buttons */
+.mywork-box button, .cv-box button {
+  margin-right: 0.5rem;
+  margin-top: 0.3rem;
   padding: 0.5rem 1rem;
   border: 2px solid #a3bffa;
   border-radius: 12px;
   background: #d7eaff;
-  cursor: pointer;
   color: #333;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
-
-.mywork-box button:hover {
+.mywork-box button:hover, .cv-box button:hover {
   background: #a3bffa;
-  color: #fff;
+  color: white;
 }
 
-/* Popups */
-.popup {
-  position: absolute;
-  display: none;
-  background: #fff;
-  border: 2px solid #c4a7e7;
+/* CV Box Button */
+.cv-box a button {
+  display: inline-block;
+}
+
+/* Close All Button */
+.close-all-btn {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem 1rem;
+  border: 2px solid #a3bffa;
   border-radius: 12px;
-  box-shadow: 4px 4px 0 #c4a7e7;
-  z-index: 1000;
-}
-
-.popup-header {
-  background: #e3d7ff;
-  padding: 0.3rem 0.6rem;
-  font-weight: bold;
-  cursor: move;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.popup-header button {
-  border: none;
-  background: transparent;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.popup-content {
-  padding: 0.8rem;
+  background: #d7eaff;
   color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
-
-/* Fun Fact Style */
-.popup.fun-fact {
-  width: 220px;
-  height: 100px;
-  background: #e3d7ff;
-  border: 2px solid #c4a7e7;
-  border-radius: 12px;
-  box-shadow: 4px 4px 0 #c4a7e7;
+.close-all-btn:hover {
+  background: #a3bffa;
+  color: white;
 }
 
 /* Footer */
@@ -173,35 +126,50 @@ footer {
   cursor: pointer;
 }
 
-/* Close all button */
-.close-all-btn {
-  display: block;
-  margin: 1rem auto;
-  padding: 0.5rem 1rem;
+/* Popups */
+.popup {
+  position: absolute;
+  display: none;
+  background: #ffffff;
   border: 2px solid #c4a7e7;
   border-radius: 12px;
-  background: #fff;
-  cursor: pointer;
+  box-shadow: 4px 4px 0 #c4a7e7;
+  z-index: 1000;
+}
+.popup-header {
+  background: #d7eaff;
+  padding: 0.5rem;
   font-weight: bold;
+  cursor: move;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #a3bffa;
+}
+.popup-header button {
+  border: none;
+  background: none;
+  font-weight: bold;
+  cursor: pointer;
   color: #333;
 }
-.close-all-btn:hover {
-  background: #e3d7ff;
-  color: #fff;
+.popup-content {
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.4;
 }
 
-/* Marquee */
-.marquee {
+/* Fun Fact Popups */
+.popup-content .marquee {
   overflow: hidden;
   white-space: nowrap;
-  animation: marquee 5s linear infinite;
 }
-
-.marquee span {
+.popup-content .marquee span {
   display: inline-block;
   padding-left: 100%;
+  animation: marquee 6s linear infinite;
 }
-
 @keyframes marquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-100%); }
