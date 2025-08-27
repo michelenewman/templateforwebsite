@@ -1,94 +1,146 @@
 /* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* Body & Background */
 body {
-  font-family: "Verdana", sans-serif;
-  background: linear-gradient(135deg, #fff9f2, #f2faff, #fffaf9);
+  font-family: Verdana, sans-serif;
+  background: linear-gradient(135deg, #fff7f2, #f0faff);
   min-height: 100vh;
   color: #333;
   padding: 2rem;
 }
 
 /* Boxes */
-.box {
-  background: #fff;
-  border: 2px solid #c4a7e7;
-  border-radius: 12px;
-  box-shadow: 4px 4px 0 #c4a7e7;
-  padding: 1.5rem;
-  margin: 1rem auto;
+.top-box, .bio-box, .research-box, .my-work-box, .cv-box {
   max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 3px solid #c4a7e7;
+  border-radius: 15px;
+  background: #fffdf9;
+  box-shadow: 4px 4px 0 #c4a7e7;
 }
 
-h1, h2 { color: #6a5acd; }
+.top-box h1 {
+  font-family: "Press Start 2P", monospace;
+  font-size: 1.8rem;
+  color: #c38d9e;
+}
 
+.tagline {
+  font-style: italic;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* Bio Box */
 .bio-box {
   display: flex;
   gap: 1rem;
 }
-
 .bio-box img {
   width: 150px;
   height: auto;
   border-radius: 12px;
 }
 
+/* Section headings */
+h2 {
+  font-family: "Silkscreen", monospace;
+  color: #6a5acd;
+  margin-bottom: 0.8rem;
+}
+
 /* Buttons */
-button, .cv-button {
+button {
+  margin: 0.3rem;
+  padding: 0.5rem 1rem;
   background: #d7eaff;
   border: 2px solid #a3bffa;
   border-radius: 12px;
-  padding: 0.5rem 1rem;
-  margin: 0.3rem;
   cursor: pointer;
-  color: #333;
-  font-weight: bold;
   transition: all 0.2s ease;
 }
-
-button:hover, .cv-button:hover {
+button:hover {
   background: #a3bffa;
-  color: white;
+  color: #fff;
+  box-shadow: 2px 2px 0 #333;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: 2rem;
-  color: #444;
-  cursor: pointer;
+/* CV button */
+.cv-btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #ffdede;
+  border: 2px solid #ffb6b6;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #333;
+}
+.cv-btn:hover {
+  background: #ffb6b6;
+  color: #fff;
 }
 
 /* Popups */
 .popup {
   display: none;
   position: absolute;
-  background: #fff;
-  border: 2px solid #6a5acd;
+  background: #fffdf9;
+  border: 2px solid #c4a7e7;
   border-radius: 12px;
-  box-shadow: 4px 4px 0 #6a5acd;
-  width: 300px;
+  box-shadow: 4px 4px 0 #c4a7e7;
+  padding: 1rem;
   min-width: 200px;
-  min-height: 100px;
+  min-height: 150px;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow: auto;
+  resize: both;
   z-index: 1000;
 }
-
 .popup-header {
-  background: #e3d7ff;
-  padding: 0.5rem;
-  cursor: move;
   font-weight: bold;
+  cursor: move;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-
-.popup-content {
-  padding: 1rem;
-}
-
 .popup-close {
+  cursor: pointer;
   background: transparent;
   border: none;
-  cursor: pointer;
   font-weight: bold;
+}
+
+/* Fun fact / Zelda popup colors */
+.popup-content {
+  margin-top: 0.5rem;
+}
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: scrollText 5s linear infinite;
+}
+@keyframes scrollText {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #444;
+  cursor: pointer;
+}
+
+/* Close all button */
+.close-all-btn {
+  display: block;
+  margin: 1rem auto;
+  background: #e3d7ff;
+  border: 2px solid #c4a7e7;
 }
