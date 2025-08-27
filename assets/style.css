@@ -1,176 +1,70 @@
-/* ---------- GENERAL ---------- */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 body {
-  font-family: 'Open Sans', Arial, sans-serif;
-  background: linear-gradient(135deg, #fdfdfd, #f5f0ff); /* subtle pastel gradient */
-  color: #333;
-  min-height: 100vh;
-}
-
-main {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  background: linear-gradient(120deg, #fefefe, #f7f0ff); /* subtle pastel 90s */
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1rem;
-  gap: 2rem;
 }
 
-/* ---------- BOXES ---------- */
 .box {
-  background: #ffffff;
+  background: #e3d7ff;
   border: 2px solid #c4a7e7;
   border-radius: 12px;
   box-shadow: 4px 4px 0 #c4a7e7;
-  padding: 2rem;
+  padding: 1rem;
+  margin: 1rem;
+  max-width: 600px;
   width: 90%;
-  max-width: 800px;
-  text-align: center;
-}
-
-.name-box h1 {
-  font-size: 2.2rem;
-  color: #5a4e7c;
-}
-
-.name-box .tagline {
-  font-size: 1rem;
-  color: #6a5acd;
-  margin-top: 0.5rem;
 }
 
 .bio-box {
   display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-  text-align: left;
+  gap: 1rem;
+  align-items: center;
 }
 
 .bio-box img {
-  width: 150px;
+  width: 120px;
   height: auto;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
-.research-box p {
-  margin-top: 0.5rem;
-  line-height: 1.5;
-}
-
-/* ---------- BUTTONS ---------- */
 button {
-  background-color: #e3d7ff;
-  border: 2px solid #c4a7e7;
-  border-radius: 8px;
+  background: #c4a7e7;
+  border: none;
   padding: 0.5rem 1rem;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
+  margin: 0.5rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  margin: 0.3rem;
+  font-weight: bold;
 }
 
 button:hover {
-  background-color: #c4a7e7;
-  color: #fff;
-  transform: scale(1.05);
+  background: #b19cd9;
 }
 
-/* ---------- WORK BOX BUTTONS INLINE ---------- */
-.work-box button {
-  display: inline-block;
-}
-
-/* ---------- CLOSE ALL BUTTON ---------- */
-#close-all-btn {
-  margin-top: 1rem;
-}
-
-/* ---------- POPUPS ---------- */
 .popup {
-  position: absolute;
   display: none;
+  position: absolute;
   background: #fff;
   border: 2px solid #c4a7e7;
   border-radius: 12px;
   box-shadow: 4px 4px 0 #c4a7e7;
   z-index: 1000;
   min-width: 200px;
-  max-width: 600px;
-  padding: 1rem;
 }
 
 .popup-header {
-  font-weight: 700;
+  background: #c4a7e7;
+  color: #fff;
+  padding: 0.5rem;
+  cursor: move;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: move;
-  margin-bottom: 0.5rem;
-}
-
-.popup-close {
-  background: #e3d7ff;
-  border: 1px solid #c4a7e7;
-  border-radius: 4px;
-  padding: 0 0.3rem;
-  cursor: pointer;
-  font-weight: 700;
 }
 
 .popup-content {
-  line-height: 1.5;
-}
-
-/* ---------- FUN FACT POPUPS ---------- */
-.popup.fun-fact {
-  background: #e3d7ff;
-  border: 2px solid #c4a7e7;
-  box-shadow: 4px 4px 0 #c4a7e7;
-}
-
-/* ---------- ZELDA EASTER EGG ---------- */
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.marquee span {
-  display: inline-block;
-  padding-left: 100%;
-  animation: scroll 5s linear infinite;
-}
-
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-/* ---------- FOOTER ---------- */
-footer {
-  margin-top: 2rem;
-  font-size: 0.9rem;
-  color: #555;
-  cursor: pointer;
-}
-
-/* ---------- MEDIA QUERIES ---------- */
-@media (max-width: 768px) {
-  .bio-box {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-
-  .bio-box img {
-    width: 120px;
-  }
-
-  .box {
-    width: 95%;
-  }
+  padding: 1rem;
 }
