@@ -1,0 +1,17 @@
+publications:
+  - title: "Understanding Interactive Media"
+    link: "https://example.com/pub1"
+  - title: "Digital Preservation Strategies"
+    link: "https://example.com/pub2"
+
+projects:
+  - name: "Cultural Knowledge Platform"
+    link: "https://example.com/project1"
+  - name: "Game-Based Learning Tool"
+    link: "https://example.com/project2"
+
+teaching:
+  - course: "Introduction to Interactive Media"
+    syllabus: "https://example.com/syllabus1"
+  - course: "Digital Preservation Practices"
+    syllabus: "https://example.com/syllabus2"
