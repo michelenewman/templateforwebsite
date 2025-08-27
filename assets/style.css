@@ -1,237 +1,94 @@
-/* ---------- RESET ---------- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* ---------- BODY ---------- */
 body {
   font-family: "Verdana", sans-serif;
-  background: linear-gradient(135deg, #fffaf0, #f0f8ff);
-  color: #333;
+  background: linear-gradient(135deg, #fff9f2, #f2faff, #fffaf9);
   min-height: 100vh;
+  color: #333;
   padding: 2rem;
 }
 
-/* ---------- HEADER ---------- */
-.header-box {
-  max-width: 700px;
-  margin: 0 auto 2rem auto;
-  padding: 1.5rem;
-  border: 3px solid #c4a7e7;
+/* Boxes */
+.box {
   background: #fff;
-  border-radius: 20px;
-  box-shadow: 4px 4px 0 #c4a7e7;
-  text-align: center;
-}
-
-.header-box h1 {
-  font-family: "Press Start 2P", monospace;
-  font-size: 1.8rem;
-  color: #c38d9e;
-}
-
-.header-box .phd-info {
-  margin-top: 0.5rem;
-  font-style: italic;
-  color: #666;
-  font-size: 0.9rem;
-}
-
-/* ---------- SECTIONS ---------- */
-.bio-box,
-.research-box,
-.work-box,
-.cv-box {
-  max-width: 700px;
-  margin: 2rem auto;
-  padding: 1.5rem;
   border: 2px solid #c4a7e7;
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 3px 3px 0px #c4a7e7;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 #c4a7e7;
+  padding: 1.5rem;
+  margin: 1rem auto;
+  max-width: 700px;
 }
 
-/* BIO */
+h1, h2 { color: #6a5acd; }
+
 .bio-box {
   display: flex;
-  align-items: flex-start;
   gap: 1rem;
 }
 
 .bio-box img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 15px;
-  cursor: pointer;
+  width: 150px;
+  height: auto;
+  border-radius: 12px;
 }
 
-.bio-box p {
-  flex: 1;
-}
-
-/* RESEARCH */
-.research-box h2,
-.work-box h2,
-.cv-box h2 {
-  font-family: "Silkscreen", monospace;
-  color: #6a5acd;
-  margin-bottom: 0.8rem;
-}
-
-/* LISTS */
-.research-box ul {
-  margin-left: 1.2rem;
-  list-style: none;
-}
-
-.research-box ul li::before {
-  content: "🌟 ";
-}
-
-/* MY WORK BUTTONS */
-.work-box button {
-  margin: 0.3rem;
+/* Buttons */
+button, .cv-button {
+  background: #d7eaff;
+  border: 2px solid #a3bffa;
+  border-radius: 12px;
   padding: 0.5rem 1rem;
-  border: 2px solid #a3bffa;
-  border-radius: 12px;
-  background: #d7eaff;
-  color: #333;
+  margin: 0.3rem;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-}
-
-.work-box button:hover {
-  background: #a3bffa;
-  color: #fff;
-  box-shadow: 2px 2px 0 #333;
-}
-
-/* CV BUTTON */
-.cv-button {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.5rem 1.2rem;
-  border-radius: 12px;
-  background: #d7eaff;
-  border: 2px solid #a3bffa;
   color: #333;
-  text-decoration: none;
   font-weight: bold;
   transition: all 0.2s ease;
 }
 
-.cv-button:hover {
+button:hover, .cv-button:hover {
   background: #a3bffa;
-  color: #fff;
-  box-shadow: 2px 2px 0 #333;
+  color: white;
 }
 
-/* ---------- FOOTER ---------- */
+/* Footer */
 footer {
   text-align: center;
-  margin-top: 3rem;
-  font-size: 0.9rem;
+  margin-top: 2rem;
   color: #444;
-}
-
-footer #close-all-btn {
-  margin-top: 0.5rem;
-  padding: 0.3rem 0.8rem;
-  border-radius: 10px;
-  background: #d7eaff;
-  border: 2px solid #a3bffa;
-  color: #333;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-footer #close-all-btn:hover {
-  background: #a3bffa;
-  color: #fff;
-}
-
-/* ---------- POPUPS ---------- */
+/* Popups */
 .popup {
   display: none;
   position: absolute;
   background: #fff;
-  border: 2px solid #c4a7e7;
+  border: 2px solid #6a5acd;
   border-radius: 12px;
-  box-shadow: 4px 4px 0 #c4a7e7;
+  box-shadow: 4px 4px 0 #6a5acd;
   width: 300px;
-  max-width: 90%;
   min-width: 200px;
+  min-height: 100px;
   z-index: 1000;
 }
 
 .popup-header {
-  padding: 0.4rem 0.6rem;
   background: #e3d7ff;
-  border-bottom: 2px solid #c4a7e7;
+  padding: 0.5rem;
+  cursor: move;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  cursor: move;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+}
+
+.popup-content {
+  padding: 1rem;
 }
 
 .popup-close {
   background: transparent;
   border: none;
-  font-weight: bold;
   cursor: pointer;
-  color: #333;
-}
-
-.popup-content {
-  padding: 0.8rem;
-  font-size: 0.9rem;
-  line-height: 1.4rem;
-  word-wrap: break-word;
-}
-
-/* FUN FACT POPUPS */
-.popup-content p {
-  margin-top: 0.5rem;
-}
-
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  display: block;
-}
-
-.marquee span {
-  display: inline-block;
-  padding-left: 100%;
-  animation: marquee 5s linear infinite;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .bio-box {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .bio-box img {
-    width: 100px;
-    height: 100px;
-  }
-
-  .work-box button, .cv-button {
-    width: 100%;
-    margin: 0.3rem 0;
-  }
+  font-weight: bold;
 }
