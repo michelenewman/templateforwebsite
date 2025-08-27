@@ -1,146 +1,158 @@
 /* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Body & Background */
+/* Body */
 body {
-  font-family: Verdana, sans-serif;
-  background: linear-gradient(135deg, #fff7f2, #f0faff);
+  font-family: "Verdana", sans-serif;
+  background: linear-gradient(135deg, #fffdf9, #f9fff4);
   min-height: 100vh;
   color: #333;
   padding: 2rem;
 }
 
-/* Boxes */
-.top-box, .bio-box, .research-box, .my-work-box, .cv-box {
+/* Box styles */
+.box {
   max-width: 700px;
   margin: 2rem auto;
   padding: 1.5rem;
   border: 3px solid #c4a7e7;
   border-radius: 15px;
-  background: #fffdf9;
   box-shadow: 4px 4px 0 #c4a7e7;
+  background: linear-gradient(135deg, #ffdede, #e9d9ff, #d9f5ec);
 }
 
-.top-box h1 {
+/* Name box */
+.name-box h1 {
   font-family: "Press Start 2P", monospace;
   font-size: 1.8rem;
   color: #c38d9e;
+  margin-bottom: 0.3rem;
 }
-
-.tagline {
-  font-style: italic;
+.name-box .subtitle {
+  font-style: normal;
   color: #666;
+  font-size: 1rem;
+}
+.name-box .tagline {
+  font-style: italic;
+  color: #6a5acd;
+  font-size: 1.1rem;
   margin-top: 0.5rem;
 }
 
-/* Bio Box */
+/* Bio box */
 .bio-box {
   display: flex;
+  align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 .bio-box img {
   width: 150px;
-  height: auto;
   border-radius: 12px;
 }
+.bio-box p {
+  flex: 1;
+}
 
-/* Section headings */
-h2 {
+/* Research box */
+.research-box h2 {
   font-family: "Silkscreen", monospace;
   color: #6a5acd;
   margin-bottom: 0.8rem;
 }
 
-/* Buttons */
-button {
-  margin: 0.3rem;
+/* Work box buttons */
+.work-box button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  border: 2px solid #a3bffa;
+  background: #d7eaff;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.work-box button:hover {
+  background: #a3bffa;
+  color: white;
+  box-shadow: 2px 2px 0 #333;
+}
+
+/* CV box buttons */
+.cv-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.cv-buttons .button {
+  text-decoration: none;
   padding: 0.5rem 1rem;
   background: #d7eaff;
   border: 2px solid #a3bffa;
   border-radius: 12px;
-  cursor: pointer;
+  color: #333;
+  font-weight: bold;
   transition: all 0.2s ease;
 }
-button:hover {
+.cv-buttons .button:hover {
   background: #a3bffa;
-  color: #fff;
-  box-shadow: 2px 2px 0 #333;
-}
-
-/* CV button */
-.cv-btn {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: #ffdede;
-  border: 2px solid #ffb6b6;
-  border-radius: 12px;
-  text-decoration: none;
-  color: #333;
-}
-.cv-btn:hover {
-  background: #ffb6b6;
-  color: #fff;
+  color: white;
+  box-shadow: 2px 2px 0px #333;
 }
 
 /* Popups */
 .popup {
   display: none;
   position: absolute;
-  background: #fffdf9;
+  background: #fff;
   border: 2px solid #c4a7e7;
   border-radius: 12px;
   box-shadow: 4px 4px 0 #c4a7e7;
-  padding: 1rem;
-  min-width: 200px;
-  min-height: 150px;
-  max-width: 500px;
-  max-height: 80vh;
-  overflow: auto;
-  resize: both;
+  width: 400px;
+  max-width: 90%;
+  min-width: 250px;
+  padding: 0.5rem;
   z-index: 1000;
 }
 .popup-header {
   font-weight: bold;
+  background: #e3d7ff;
+  padding: 0.3rem 0.5rem;
   cursor: move;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.popup-close {
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  font-weight: bold;
-}
-
-/* Fun fact / Zelda popup colors */
 .popup-content {
   margin-top: 0.5rem;
-}
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  animation: scrollText 5s linear infinite;
-}
-@keyframes scrollText {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
 }
 
 /* Footer */
 footer {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
   font-size: 0.9rem;
   color: #444;
   cursor: pointer;
 }
 
 /* Close all button */
-.close-all-btn {
+#close-all-btn {
   display: block;
-  margin: 1rem auto;
-  background: #e3d7ff;
-  border: 2px solid #c4a7e7;
+  margin: 2rem auto;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  border: 2px solid #a3bffa;
+  background: #d7eaff;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+}
+#close-all-btn:hover {
+  background: #a3bffa;
+  color: white;
+  box-shadow: 2px 2px 0 #333;
 }
