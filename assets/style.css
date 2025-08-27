@@ -42,6 +42,7 @@ main {
   color: #4b2fa5;
 }
 
+/* Fixed bio box (no resize) */
 .bio-box {
   display: flex;
   align-items: flex-start;
@@ -51,15 +52,10 @@ main {
   border: 2px solid #c4a7e7;
   border-radius: 12px;
   box-shadow: 4px 4px 0 #c4a7e7;
-  resize: both;
-  overflow: auto;
-  min-width: 250px;
-  min-height: 150px;
 }
 
 .bio-box img {
   width: 150px;
-  max-width: 30%;
   height: auto;
   border-radius: 8px;
   object-fit: cover;
