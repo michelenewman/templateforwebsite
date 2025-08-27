@@ -1,99 +1,49 @@
-// Load YAML data
-fetch('assets/data.yml')
-  .then(res => res.text())
-  .then(text => {
-    const data = jsyaml.load(text);
-
-    const pubList = document.getElementById('publications-list');
-    data.publications.forEach(pub => {
-      const a = document.createElement('a');
-      a.href = pub.link;
-      a.target = "_blank";
-      a.textContent = pub.title;
-      pubList.appendChild(a);
-      pubList.appendChild(document.createElement('br'));
-    });
-
-    const projList = document.getElementById('projects-list');
-    data.projects.forEach(proj => {
-      const a = document.createElement('a');
-      a.href = proj.link;
-      a.target = "_blank";
-      a.textContent = proj.name;
-      projList.appendChild(a);
-      projList.appendChild(document.createElement('br'));
-    });
-
-    const teachList = document.getElementById('teaching-list');
-    data.teaching.forEach(course => {
-      const a = document.createElement('a');
-      a.href = course.syllabus;
-      a.target = "_blank";
-      a.textContent = course.course;
-      teachList.appendChild(a);
-      teachList.appendChild(document.createElement('br'));
-    });
-  });
-
-// Popup management
+// ---------- POPUP MANAGEMENT ----------
 function openPopup(id) {
   const popup = document.getElementById(id);
+  if (!popup) return;
   popup.style.display = 'block';
-
   const vw = window.innerWidth;
   const vh = window.innerHeight;
   const pw = popup.offsetWidth;
   const ph = popup.offsetHeight;
 
-  const offsetX = (Math.random()*60)-30;
-  const offsetY = (Math.random()*60)-30;
+  const offsetX = (Math.random() * 60) - 30;
+  const offsetY = (Math.random() * 60) - 30;
 
-  popup.style.left = `${(vw-pw)/2 + offsetX}px`;
-  popup.style.top = `${(vh-ph)/2 + offsetY}px`;
+  popup.style.left = `${(vw - pw)/2 + offsetX}px`;
+  popup.style.top = `${(vh - ph)/2 + offsetY}px`;
   popup.style.zIndex = 1000;
 }
 
-function closePopup(id) {
-  document.getElementById(id).style.display = 'none';
+function closePopup(id){
+  const popup = document.getElementById(id);
+  if(popup) popup.style.display='none';
 }
 
-document.getElementById('close-all-btn').addEventListener('click', () => {
-  document.querySelectorAll('.popup').forEach(p => p.style.display='none');
+document.getElementById('close-all-btn').addEventListener('click', ()=>{
+  document.querySelectorAll('.popup').forEach(p=>p.style.display='none');
 });
 
 // Make popups draggable
-document.querySelectorAll('.popup').forEach(popup => {
+document.querySelectorAll('.popup').forEach(popup=>{
   const header = popup.querySelector('.popup-header');
-  let offsetX=0, offsetY=0, isDown=false;
-
-  header.addEventListener('mousedown', e => {
-    isDown = true;
+  let isDown=false, offsetX=0, offsetY=0;
+  header.addEventListener('mousedown', e=>{
+    isDown=true;
     offsetX = e.clientX - popup.offsetLeft;
     offsetY = e.clientY - popup.offsetTop;
     popup.style.zIndex=1000;
   });
-
-  document.addEventListener('mousemove', e => {
+  document.addEventListener('mousemove', e=>{
     if(!isDown) return;
-    popup.style.left = (e.clientX - offsetX)+'px';
-    popup.style.top = (e.clientY - offsetY)+'px';
+    popup.style.left=(e.clientX-offsetX)+'px';
+    popup.style.top=(e.clientY-offsetY)+'px';
   });
-
-  document.addEventListener('mouseup', () => isDown=false);
-
-  // Make resizable
-  const resizer = popup.querySelector('.popup-resize');
-  let isResizing=false;
-  resizer.addEventListener('mousedown', e => { e.preventDefault(); isResizing=true; });
-  document.addEventListener('mousemove', e => {
-    if(!isResizing) return;
-    popup.style.width = e.clientX - popup.offsetLeft + 'px';
-    popup.style.height = e.clientY - popup.offsetTop + 'px';
-  });
-  document.addEventListener('mouseup', () => { isResizing=false; });
+  document.addEventListener('mouseup', ()=>{isDown=false;});
 });
 
-// Fun fact popups
+// ---------- FUN FACT POPUPS ----------
 const funFacts = [
   "You found a hidden fun fact! 🌟",
   "Keep exploring! Did you know? 💡",
@@ -102,59 +52,61 @@ const funFacts = [
 ];
 
 function createFunFact() {
-  const text = funFacts[Math.floor(Math.random()*funFacts.length)];
+  const text = funFacts[Math.floor(Math.random() * funFacts.length)];
   const popup = document.createElement('div');
   popup.className='popup';
-  const width=220, height=100;
-  const vw=window.innerWidth, vh=window.innerHeight;
-  const offsetX=(Math.random()*60)-30, offsetY=(Math.random()*60)-30;
-
-  popup.style.width=width+'px';
-  popup.style.height=height+'px';
-  popup.style.left=`${(vw-width)/2 + offsetX}px`;
-  popup.style.top=`${(vh-height)/2 + offsetY}px`;
+  popup.style.width='220px';
+  popup.style.height='100px';
   popup.style.position='absolute';
   popup.style.display='block';
-  popup.style.zIndex=1000;
   popup.style.background='#e3d7ff';
   popup.style.border='2px solid #c4a7e7';
   popup.style.borderRadius='12px';
   popup.style.boxShadow='4px 4px 0 #c4a7e7';
+  popup.style.zIndex=1000;
+
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const offsetX=(Math.random()*60)-30;
+  const offsetY=(Math.random()*60)-30;
+  popup.style.left=`${(vw-220)/2 + offsetX}px`;
+  popup.style.top=`${(vh-100)/2 + offsetY}px`;
 
   popup.innerHTML=`
     <div class="popup-header">Fun Fact <button class="popup-close">X</button></div>
     <div class="popup-content">${text}</div>
-    <div class="popup-resize"></div>
   `;
   document.body.appendChild(popup);
-  popup.querySelector('.popup-close').onclick = ()=> popup.remove();
+  popup.querySelector('.popup-close').onclick=()=>popup.remove();
 
-  // draggable & resizable
+  // Draggable
   const header = popup.querySelector('.popup-header');
   let isDown=false, dragX=0, dragY=0;
-  header.addEventListener('mousedown', e => { isDown=true; dragX=e.clientX-popup.offsetLeft; dragY=e.clientY-popup.offsetTop; popup.style.zIndex=1000; });
-  document.addEventListener('mousemove', e => { if(!isDown) return; popup.style.left=(e.clientX-dragX)+'px'; popup.style.top=(e.clientY-dragY)+'px'; });
-  document.addEventListener('mouseup', ()=> isDown=false);
-
-  const resizer = popup.querySelector('.popup-resize');
-  let isResizing=false;
-  resizer.addEventListener('mousedown', e=>{ e.preventDefault(); isResizing=true; });
-  document.addEventListener('mousemove', e=>{ if(!isResizing) return; popup.style.width=e.clientX-popup.offsetLeft+'px'; popup.style.height=e.clientY-popup.offsetTop+'px'; });
-  document.addEventListener('mouseup', ()=>{ isResizing=false; });
+  header.addEventListener('mousedown', e=>{
+    isDown=true;
+    dragX=e.clientX-popup.offsetLeft;
+    dragY=e.clientY-popup.offsetTop;
+    popup.style.zIndex=1000;
+  });
+  document.addEventListener('mousemove', e=>{
+    if(!isDown) return;
+    popup.style.left=(e.clientX-dragX)+'px';
+    popup.style.top=(e.clientY-dragY)+'px';
+  });
+  document.addEventListener('mouseup', ()=>{isDown=false;});
 }
 
-// Bio click triggers fun fact
 document.querySelector('.bio-box img').addEventListener('click', createFunFact);
 
-// Zelda Easter Egg
-document.getElementById('footer-easter-egg').addEventListener('click', () => {
-  const popup=document.createElement('div');
+// ---------- ZELDA EASTER EGG ----------
+const footer = document.getElementById('footer-easter-egg');
+footer.addEventListener('click', ()=>{
+  const popup = document.createElement('div');
   popup.className='popup';
-  const width=300, height=120, vw=window.innerWidth, vh=window.innerHeight;
+  const width=300, height=120;
+  const vw=window.innerWidth, vh=window.innerHeight;
   popup.style.width=width+'px';
   popup.style.height=height+'px';
-  popup.style.left=((vw-width)/2)+'px';
-  popup.style.top=((vh-height)/2)+'px';
   popup.style.position='absolute';
   popup.style.display='block';
   popup.style.background='#e3d7ff';
@@ -162,28 +114,33 @@ document.getElementById('footer-easter-egg').addEventListener('click', () => {
   popup.style.borderRadius='12px';
   popup.style.boxShadow='4px 4px 0 #c4a7e7';
   popup.style.zIndex=1000;
+  popup.style.left=`${(vw-width)/2}px`;
+  popup.style.top=`${(vh-height)/2}px`;
 
   popup.innerHTML=`
     <div class="popup-header">🎮 Zelda Easter Egg <button class="popup-close">X</button></div>
     <div class="popup-content">
       <div class="marquee"><span>🔺 You found the Triforce! 🔺</span></div>
-      <p style="color:#6a5acd; margin-top:0.5rem;">It's dangerous to go alone… take this! 🗡️</p>
-      <div class="popup-resize"></div>
+      <p style="color:#6a5acd;margin-top:0.5rem;">It's dangerous to go alone… take this! 🗡️</p>
     </div>
   `;
+
   document.body.appendChild(popup);
   popup.querySelector('.popup-close').onclick=()=>popup.remove();
 
-  // draggable & resizable
-  const header=popup.querySelector('.popup-header');
+  // Draggable
+  const header = popup.querySelector('.popup-header');
   let isDown=false, dragX=0, dragY=0;
-  header.addEventListener('mousedown', e=>{ isDown=true; dragX=e.clientX-popup.offsetLeft; dragY=e.clientY-popup.offsetTop; popup.style.zIndex=1000; });
-  document.addEventListener('mousemove', e=>{ if(!isDown) return; popup.style.left=(e.clientX-dragX)+'px'; popup.style.top=(e.clientY-dragY)+'px'; });
-  document.addEventListener('mouseup', ()=>isDown=false);
-
-  const resizer=popup.querySelector('.popup-resize');
-  let isResizing=false;
-  resizer.addEventListener('mousedown', e=>{ e.preventDefault(); isResizing=true; });
-  document.addEventListener('mousemove', e=>{ if(!isResizing) return; popup.style.width=e.clientX-popup.offsetLeft+'px'; popup.style.height=e.clientY-popup.offsetTop+'px'; });
-  document.addEventListener('mouseup', ()=>{ isResizing=false; });
+  header.addEventListener('mousedown', e=>{
+    isDown=true;
+    dragX=e.clientX-popup.offsetLeft;
+    dragY=e.clientY-popup.offsetTop;
+    popup.style.zIndex=1000;
+  });
+  document.addEventListener('mousemove', e=>{
+    if(!isDown) return;
+    popup.style.left=(e.clientX-dragX)+'px';
+    popup.style.top=(e.clientY-dragY)+'px';
+  });
+  document.addEventListener('mouseup', ()=>{isDown=false;});
 });
