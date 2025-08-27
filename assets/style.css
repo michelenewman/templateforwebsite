@@ -1,188 +1,176 @@
-/* -------- RESET -------- */
+/* ---------- GENERAL ---------- */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Comic Sans MS', cursive, sans-serif; /* 90s vibe */
-  background: linear-gradient(135deg, #fdf6f6, #f0f9ff, #fff0f6);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
+  font-family: 'Open Sans', Arial, sans-serif;
+  background: linear-gradient(135deg, #fdfdfd, #f5f0ff); /* subtle pastel gradient */
   color: #333;
-  padding: 2rem;
+  min-height: 100vh;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* -------- MAIN LAYOUT -------- */
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: 1000px;
-  gap: 1.5rem;
+  padding: 2rem 1rem;
+  gap: 2rem;
 }
 
+/* ---------- BOXES ---------- */
 .box {
-  background: #fff;
-  padding: 1rem;
-  border: 3px solid #c4a7e7;
+  background: #ffffff;
+  border: 2px solid #c4a7e7;
   border-radius: 12px;
-  box-shadow: 6px 6px 0 #6a5acd;
-  width: 100%;
+  box-shadow: 4px 4px 0 #c4a7e7;
+  padding: 2rem;
+  width: 90%;
+  max-width: 800px;
   text-align: center;
 }
 
-/* -------- NAME BOX -------- */
-.name-box {
-  background: #fff2e6;
-}
-
 .name-box h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 2.2rem;
+  color: #5a4e7c;
 }
 
-.tagline {
-  font-size: 1.1rem;
-  font-style: italic;
-  color: #444;
+.name-box .tagline {
+  font-size: 1rem;
+  color: #6a5acd;
+  margin-top: 0.5rem;
 }
 
-/* -------- BIO BOX -------- */
 .bio-box {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  background: #e6fff2;
+  align-items: flex-start;
+  gap: 1.5rem;
+  text-align: left;
 }
 
 .bio-box img {
   width: 150px;
   height: auto;
-  border-radius: 10px;
-  border: 3px solid #6a5acd;
-  flex-shrink: 0;
+  border-radius: 8px;
 }
 
-.bio-box p {
-  flex: 1;
-  text-align: left;
+.research-box p {
+  margin-top: 0.5rem;
+  line-height: 1.5;
 }
 
-/* -------- RESEARCH BOX -------- */
-.research-box {
-  background: #f0f9ff;
-  text-align: left;
-}
-
-/* -------- WORK & CV BOXES -------- */
-.work-box,
-.cv-box {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  padding: 1rem;
-}
-
-.work-box {
-  background: #f9e6ff;
-}
-
-.cv-box {
-  background: #fff0f6;
-}
-
-/* -------- BUTTONS -------- */
+/* ---------- BUTTONS ---------- */
 button {
-  background: #c4a7e7;
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 10px;
+  background-color: #e3d7ff;
+  border: 2px solid #c4a7e7;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.25s ease;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-  box-shadow: 3px 3px 0 #6a5acd;
+  transition: all 0.2s ease;
+  margin: 0.3rem;
 }
 
-/* Fun hover effect */
 button:hover {
-  background: #ff80c0;
-  transform: translateY(-4px) rotate(-2deg) scale(1.05);
-  box-shadow: 6px 6px 0 #333;
+  background-color: #c4a7e7;
+  color: #fff;
+  transform: scale(1.05);
 }
 
-/* Click press effect */
-button:active {
-  transform: translateY(2px) scale(0.98);
-  box-shadow: 2px 2px 0 #6a5acd;
+/* ---------- WORK BOX BUTTONS INLINE ---------- */
+.work-box button {
+  display: inline-block;
 }
 
-/* -------- POPUPS -------- */
+/* ---------- CLOSE ALL BUTTON ---------- */
+#close-all-btn {
+  margin-top: 1rem;
+}
+
+/* ---------- POPUPS ---------- */
 .popup {
-  position: fixed;
-  top: 120px;
-  left: 120px;
-  width: 400px;
-  background: #fff;
-  border: 3px solid #c4a7e7;
-  border-radius: 12px;
-  box-shadow: 6px 6px 0 #6a5acd;
+  position: absolute;
   display: none;
-  z-index: 10;
-  resize: both;
-  overflow: auto;
+  background: #fff;
+  border: 2px solid #c4a7e7;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 #c4a7e7;
+  z-index: 1000;
+  min-width: 200px;
+  max-width: 600px;
+  padding: 1rem;
 }
 
 .popup-header {
-  background: #c4a7e7;
-  color: #fff;
-  padding: 0.5rem;
-  font-weight: bold;
-  cursor: move;
+  font-weight: 700;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.popup-content {
-  padding: 1rem;
-  text-align: left;
+  cursor: move;
+  margin-bottom: 0.5rem;
 }
 
 .popup-close {
-  background: #ff4d6d;
-  border: none;
-  color: white;
-  font-weight: bold;
-  padding: 0.25rem 0.6rem;
-  border-radius: 6px;
+  background: #e3d7ff;
+  border: 1px solid #c4a7e7;
+  border-radius: 4px;
+  padding: 0 0.3rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.popup-content {
+  line-height: 1.5;
+}
+
+/* ---------- FUN FACT POPUPS ---------- */
+.popup.fun-fact {
+  background: #e3d7ff;
+  border: 2px solid #c4a7e7;
+  box-shadow: 4px 4px 0 #c4a7e7;
+}
+
+/* ---------- ZELDA EASTER EGG ---------- */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll 5s linear infinite;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #555;
   cursor: pointer;
 }
 
-.popup-close:hover {
-  background: #ff1a40;
-}
+/* ---------- MEDIA QUERIES ---------- */
+@media (max-width: 768px) {
+  .bio-box {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
 
-/* -------- FOOTER -------- */
-footer {
-  text-align: center;
-  margin-top: 2rem;
-  color: #555;
+  .bio-box img {
+    width: 120px;
+  }
+
+  .box {
+    width: 95%;
+  }
 }
