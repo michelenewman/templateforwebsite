@@ -8,22 +8,20 @@
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 </head>
 <body>
-  <header class="header-box">
+  <header class="top-box">
     <h1>Michele Newman</h1>
-    <p class="phd-info">Ph.D. Candidate, University of Washington – Information School</p>
+    <p class="tagline">Ph.D. candidate at University of Washington Information School</p>
   </header>
 
   <main>
-    <!-- BIO -->
     <section class="bio-box">
-      <img src="assets/bio.jpg" alt="">
+      <img src="assets/bio.jpg" alt="Michele Newman">
       <p>I'm Michele Newman, a Ph.D. candidate at the University of Washington's Information School, advised by Dr. Jin Ha Lee and Dr. Jason Yip. My research explores how communities create and preserve cultural knowledge through interactive media, including video games and creativity support tools, framing these environments as lasting infrastructures for cultural heritage and community identity.</p>
     </section>
 
-    <!-- RESEARCH -->
     <section class="research-box">
-      <h2>Research Interests</h2>
-      <p>I'm curious about how digital worlds—like video games, interactive tools, and multimedia platforms—become spaces where communities create, share, and preserve knowledge. I explore how we can design environments that spark creativity, support learning, and protect cultural heritage. Along the way, I'm especially interested in:</p>
+      <h2>Research</h2>
+      <p>I’m curious about how digital worlds—like video games, interactive tools, and multimedia platforms—become spaces where communities create, share, and preserve knowledge. I explore how we can design environments that spark creativity, support learning, and protect cultural heritage. Along the way, I’m especially interested in:</p>
       <ul>
         <li>Finding ways to preserve digital stories, games, and cultural content before they disappear</li>
         <li>Co-creating tools and experiences that invite collaboration, creativity, and discovery</li>
@@ -31,40 +29,42 @@
       </ul>
     </section>
 
-    <!-- MY WORK -->
-    <section class="work-box">
+    <section class="my-work-box">
       <h2>My Work</h2>
       <button onclick="openPopup('publications-popup')">Publications</button>
       <button onclick="openPopup('projects-popup')">Projects</button>
       <button onclick="openPopup('teaching-popup')">Teaching</button>
     </section>
 
-    <!-- CV -->
     <section class="cv-box">
       <h2>CV</h2>
-      <a href="assets/cv.pdf" target="_blank" class="cv-button">Download CV</a>
+      <a href="assets/cv.pdf" target="_blank" class="cv-btn">Download CV</a>
+      <p>
+        <a href="https://scholar.google.com" target="_blank">Google Scholar</a> |
+        <a href="https://orcid.org" target="_blank">ORCID</a>
+      </p>
     </section>
+
+    <button id="close-all-btn" class="close-all-btn">Close All Windows</button>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Michele Newman · <span id="footer-easter-egg" style="cursor:pointer; text-decoration:underline;">Click for a secret!</span></p>
-    <button id="close-all-btn">Close All Windows</button>
+  <footer id="footer-easter-egg">
+    <p>© 2025 Michele Newman</p>
   </footer>
 
-  <!-- POPUPS -->
+  <!-- My Work Popups -->
   <div id="publications-popup" class="popup">
-    <div class="popup-header">Publications <button class="popup-close" onclick="closePopup('publications-popup')">X</button></div>
+    <div class="popup-header">Publications <button class="popup-close">X</button></div>
     <div class="popup-content" id="publications-list"></div>
   </div>
 
   <div id="projects-popup" class="popup">
-    <div class="popup-header">Projects <button class="popup-close" onclick="closePopup('projects-popup')">X</button></div>
+    <div class="popup-header">Projects <button class="popup-close">X</button></div>
     <div class="popup-content" id="projects-list"></div>
   </div>
 
   <div id="teaching-popup" class="popup">
-    <div class="popup-header">Teaching <button class="popup-close" onclick="closePopup('teaching-popup')">X</button></div>
+    <div class="popup-header">Teaching <button class="popup-close">X</button></div>
     <div class="popup-content" id="teaching-list"></div>
   </div>
 
