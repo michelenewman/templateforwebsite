@@ -4,13 +4,12 @@ body {
   font-family: 'Arial', sans-serif;
   background: linear-gradient(120deg, #fdf6f0, #f2e6ff);
   color: #333;
-  overflow-x: hidden;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* centers all boxes horizontally */
   padding: 2rem;
   gap: 1.5rem;
 }
@@ -24,6 +23,7 @@ main {
   border-radius: 12px;
   box-shadow: 4px 4px 0 #c4a7e7;
   background: #fdfdff;
+  text-align: left;
 }
 
 .name-box {
@@ -42,16 +42,12 @@ main {
   color: #4b2fa5;
 }
 
-/* Fixed bio box (no resize) */
+/* Fixed bio box */
 .bio-box {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  padding: 1rem;
   background: #f2e6ff;
-  border: 2px solid #c4a7e7;
-  border-radius: 12px;
-  box-shadow: 4px 4px 0 #c4a7e7;
 }
 
 .bio-box img {
@@ -97,11 +93,11 @@ button {
   cursor: pointer;
   font-weight: bold;
   transition: all 0.2s;
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* 90s vibe */
 }
 
 button:hover {
   background: #6a5acd;
-  color: #fff;
 }
 
 button:focus {
@@ -136,7 +132,7 @@ button:focus {
   cursor: move;
 }
 
-.popup-header button.popup-close {
+.popup-close {
   background: #6a5acd;
   border: none;
   border-radius: 4px;
@@ -145,7 +141,7 @@ button:focus {
   cursor: pointer;
 }
 
-.popup-header button.popup-close:hover {
+.popup-close:hover {
   background: #4b2fa5;
 }
 
@@ -154,7 +150,7 @@ button:focus {
   font-size: 0.95rem;
 }
 
-/* Fun fact popup specific */
+/* Fun fact popup */
 .popup.fun-fact {
   width: 220px;
   height: 100px;
