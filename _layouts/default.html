@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }} | Michele Newman</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar-group">
+    <div class="sidebar">
+      <div class="title-bar">Menu</div>
+      <div class="inner">
+        <p><a href="/">🏠 Home</a></p>
+        <p><a href="/research">📂 Research</a></p>
+        <p><a href="/teaching">📑 Teaching</a></p>
+        <p><a href="/cv">📜 CV</a></p>
+        <p><a href="#" onclick="openPopup('projectsPopup');return false;">💾 Projects</a></p>
+        <p><a href="#" onclick="openPopup('funPopup');return false;">🌸 Fun Stuff</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="content">
+    {{ content }}
+  </div>
+
+  <!-- Popup placeholders -->
+  <div class="popup" id="projectsPopup">
+    <div class="popup-header">
+      Projects
+      <span class="popup-close" onclick="closePopup('projectsPopup')">✕</span>
+    </div>
+    <div class="popup-content">
+      <ul>
+        <li>🎮 <strong>Misinformation Game Design</strong> – exploring play as a method of sensemaking.</li>
+        <li>📊 <strong>LIS Software Study</strong> – analyzing how creative tools shape library practices.</li>
+        <li>🖌️ <strong>Remix & Authorship Workshop</strong> – co-design with youth about authorship in digital culture.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="popup" id="funPopup">
+    <div class="popup-header">
+      Fun Stuff
+      <span class="popup-close" onclick="closePopup('funPopup')">✕</span>
+    </div>
+    <div class="popup-content">
+      <p>🌟 Thanks for finding this hidden corner! 🌟</p>
+      <p>Try the Konami code for a star surprise ✨</p>
+    </div>
+  </div>
+
+  <!-- Popup JS -->
+  <script>
+    function openPopup(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+    function closePopup(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+    function makeDraggable(el) {
+      const header = el.querySelector('.popup-header');
+      let offsetX = 0, offsetY = 0, isDown = false;
+      header.addEventListener('mousedown', (e) => {
+        isDown = true;
+        offsetX = el.offsetLeft - e.clientX;
+        offsetY = el.offsetTop - e.clientY;
+      });
+      document.addEventListener('mouseup', () => { isDown = false; });
+      document.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        el.style.left = (e.clientX + offsetX) + 'px';
+        el.style.top = (e.clientY + offsetY) + 'px';
+      });
+    }
+    document.querySelectorAll('.popup').forEach(makeDraggable);
+  </script>
+</body>
+</html>
